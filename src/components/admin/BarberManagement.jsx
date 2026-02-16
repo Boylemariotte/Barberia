@@ -79,19 +79,19 @@ export function BarberManagement() {
 
     return (
         <div className="space-y-6">
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div>
-                    <h1 className="text-3xl font-display font-bold mb-2">Gestión de Barberos</h1>
-                    <p className="text-gray-600">Administra el equipo de barberos</p>
+                    <h1 className="text-2xl md:text-3xl font-display font-bold mb-1 md:mb-2">Gestión de Barberos</h1>
+                    <p className="text-sm md:text-base text-gray-600">Administra el equipo de barberos</p>
                 </div>
-                <button onClick={handleAdd} className="btn-primary flex items-center gap-2">
+                <button onClick={handleAdd} className="btn-primary flex items-center justify-center gap-2 w-full sm:w-auto">
                     <Plus className="w-5 h-5" />
                     Agregar Barbero
                 </button>
             </div>
 
             {/* Barbers Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
                 {barbers.map(barber => (
                     <div key={barber.id} className="card group">
                         <div className="flex items-start gap-4">
@@ -114,21 +114,21 @@ export function BarberManagement() {
                             </div>
                         </div>
 
-                        <p className="text-sm text-gray-600 mt-3">
+                        <p className="text-sm text-gray-600 mt-4 line-clamp-2">
                             {barber.description}
                         </p>
 
-                        <div className="flex gap-2 mt-4">
+                        <div className="flex flex-col sm:flex-row gap-2 mt-6">
                             <button
                                 onClick={() => handleEdit(barber)}
-                                className="flex-1 btn-outline flex items-center justify-center gap-2 text-sm py-2"
+                                className="flex-1 btn-outline flex items-center justify-center gap-2 text-sm py-2 px-4"
                             >
                                 <Edit className="w-4 h-4" />
                                 Editar
                             </button>
                             <button
                                 onClick={() => handleDelete(barber.id)}
-                                className="px-4 py-2 border-2 border-red-500 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                                className="sm:px-4 py-2 border-2 border-red-500 text-red-600 hover:bg-red-50 rounded-lg transition-colors flex items-center justify-center"
                             >
                                 <Trash className="w-4 h-4" />
                             </button>

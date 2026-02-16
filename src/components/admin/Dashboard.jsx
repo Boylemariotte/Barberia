@@ -97,22 +97,22 @@ export function Dashboard() {
                                 return (
                                     <div
                                         key={apt.id}
-                                        className="flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
+                                        className="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors gap-4"
                                     >
-                                        <div className="flex items-center gap-4">
-                                            <div className="bg-gold-500 text-white px-3 py-2 rounded-lg font-semibold">
+                                        <div className="flex items-center gap-3 md:gap-4">
+                                            <div className="bg-gold-500 text-white px-2 py-1 md:px-3 md:py-2 rounded-lg font-semibold text-sm md:text-base whitespace-nowrap">
                                                 {formatTime(apt.time)}
                                             </div>
-                                            <div>
-                                                <p className="font-semibold">{apt.clientName}</p>
-                                                <p className="text-sm text-gray-600">
+                                            <div className="min-w-0">
+                                                <p className="font-semibold truncate">{apt.clientName}</p>
+                                                <p className="text-xs md:text-sm text-gray-600 truncate">
                                                     {barber?.name} • {aptServices.map(s => s?.name).join(', ')}
                                                 </p>
                                             </div>
                                         </div>
-                                        <div className="text-right">
+                                        <div className="flex justify-between sm:text-right items-center sm:block border-t sm:border-t-0 pt-2 sm:pt-0">
                                             <p className="font-bold text-gold-600">{formatPrice(total)}</p>
-                                            <p className="text-sm text-gray-600">{apt.clientPhone}</p>
+                                            <p className="text-xs md:text-sm text-gray-600">{apt.clientPhone}</p>
                                         </div>
                                     </div>
                                 );
@@ -124,7 +124,7 @@ export function Dashboard() {
             {/* Barbers Overview */}
             <div className="card">
                 <h2 className="text-xl font-display font-bold mb-4">Barberos</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                     {barbers.map(barber => {
                         const barberAppointments = todayAppointments.filter(apt => String(apt.barberId) === String(barber.id));
                         return (
@@ -132,10 +132,10 @@ export function Dashboard() {
                                 <img
                                     src={barber.photo}
                                     alt={barber.name}
-                                    className="w-12 h-12 rounded-full object-cover"
+                                    className="w-10 h-10 md:w-12 md:h-12 rounded-full object-cover"
                                 />
-                                <div>
-                                    <p className="font-semibold text-sm">{barber.name}</p>
+                                <div className="min-w-0">
+                                    <p className="font-semibold text-sm truncate">{barber.name}</p>
                                     <p className="text-xs text-gray-600">
                                         {barberAppointments.length} citas hoy
                                     </p>
@@ -145,6 +145,7 @@ export function Dashboard() {
                     })}
                 </div>
             </div>
+
         </div>
     );
 }

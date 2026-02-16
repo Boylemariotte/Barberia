@@ -58,12 +58,12 @@ export function CatalogueManagement() {
 
     return (
         <div className="space-y-6">
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div>
-                    <h1 className="text-3xl font-display font-bold mb-2">Catálogo de Cortes</h1>
-                    <p className="text-gray-600">Administra las fotos que verán tus clientes como referencia</p>
+                    <h1 className="text-2xl md:text-3xl font-display font-bold mb-1 md:mb-2">Catálogo de Cortes</h1>
+                    <p className="text-sm md:text-base text-gray-600">Administra las fotos que verán tus clientes</p>
                 </div>
-                <button onClick={handleAdd} className="btn-primary flex items-center gap-2">
+                <button onClick={handleAdd} className="btn-primary flex items-center justify-center gap-2 w-full sm:w-auto">
                     <Plus className="w-5 h-5" />
                     Añadir al Catálogo
                 </button>

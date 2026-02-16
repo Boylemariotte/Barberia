@@ -63,12 +63,12 @@ export function AppointmentsList() {
 
     return (
         <div className="space-y-6">
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div>
-                    <h1 className="text-3xl font-display font-bold mb-2">Gestión de Citas</h1>
-                    <p className="text-gray-600">Administra todas las citas de la barbería</p>
+                    <h1 className="text-2xl md:text-3xl font-display font-bold mb-1 md:mb-2">Gestión de Citas</h1>
+                    <p className="text-sm md:text-base text-gray-600">Administra todas las citas de la barbería</p>
                 </div>
-                <Link to="/booking" className="btn-primary flex items-center gap-2">
+                <Link to="/booking" className="btn-primary flex items-center justify-center gap-2 w-full sm:w-auto">
                     <Plus className="w-5 h-5" />
                     Nueva Cita
                 </Link>
@@ -148,27 +148,27 @@ export function AppointmentsList() {
                                         key={apt.id}
                                         className="p-4 border border-gray-200 rounded-lg hover:shadow-md transition-shadow"
                                     >
-                                        <div className="flex items-start justify-between mb-3">
-                                            <div className="flex-1">
-                                                <div className="flex items-center gap-3 mb-2">
-                                                    <h3 className="font-semibold text-lg">{apt.clientName}</h3>
+                                        <div className="flex flex-col md:flex-row md:items-start justify-between gap-4">
+                                            <div className="flex-1 min-w-0">
+                                                <div className="flex flex-wrap items-center gap-2 mb-3">
+                                                    <h3 className="font-semibold text-lg truncate">{apt.clientName}</h3>
                                                     <span className={cn(
-                                                        "px-2 py-1 rounded-full text-xs font-semibold",
+                                                        "px-2 py-1 rounded-full text-[10px] md:text-xs font-semibold whitespace-nowrap",
                                                         statusColors[apt.status]
                                                     )}>
                                                         {statusLabels[apt.status]}
                                                     </span>
                                                 </div>
-                                                <div className="grid grid-cols-2 gap-2 text-sm text-gray-600">
-                                                    <div>📅 {formatDate(apt.date)}</div>
-                                                    <div>🕐 {formatTime(apt.time)}</div>
-                                                    <div>💈 {barber?.name}</div>
-                                                    <div>💰 {formatPrice(total)}</div>
-                                                    <div>📧 {apt.clientEmail}</div>
-                                                    <div>📱 {apt.clientPhone}</div>
+                                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-2 gap-x-4 text-sm text-gray-600">
+                                                    <div className="flex items-center gap-2"><span>📅</span> <span className="truncate">{formatDate(apt.date)}</span></div>
+                                                    <div className="flex items-center gap-2"><span>🕐</span> <span className="truncate">{formatTime(apt.time)}</span></div>
+                                                    <div className="flex items-center gap-2"><span>💈</span> <span className="truncate">{barber?.name}</span></div>
+                                                    <div className="flex items-center gap-2 text-gold-600 font-semibold"><span>💰</span> <span className="truncate">{formatPrice(total)}</span></div>
+                                                    <div className="flex items-center gap-2"><span className="shrink-0">📧</span> <span className="truncate">{apt.clientEmail}</span></div>
+                                                    <div className="flex items-center gap-2"><span className="shrink-0">📱</span> <span className="truncate">{apt.clientPhone}</span></div>
                                                 </div>
-                                                <div className="mt-2">
-                                                    <span className="text-sm text-gray-600">Servicios: </span>
+                                                <div className="mt-3 pt-3 border-t border-gray-100">
+                                                    <span className="text-sm text-gray-500">Servicios: </span>
                                                     <span className="text-sm font-medium">
                                                         {aptServices.map(s => s?.name).join(', ')}
                                                     </span>
@@ -177,20 +177,22 @@ export function AppointmentsList() {
 
                                             {/* Actions */}
                                             {apt.status === 'confirmed' && (
-                                                <div className="flex gap-2 ml-4">
+                                                <div className="flex md:flex-col gap-2 shrink-0">
                                                     <button
                                                         onClick={() => handleComplete(apt.id)}
-                                                        className="p-2 bg-green-100 text-green-600 hover:bg-green-200 rounded-lg transition-colors"
+                                                        className="flex-1 md:flex-none p-2.5 bg-green-100 text-green-600 hover:bg-green-200 rounded-lg transition-colors flex items-center justify-center gap-2"
                                                         title="Marcar como completada"
                                                     >
                                                         <Check className="w-5 h-5" />
+                                                        <span className="md:hidden text-sm font-medium">Completar</span>
                                                     </button>
                                                     <button
                                                         onClick={() => handleCancel(apt.id)}
-                                                        className="p-2 bg-red-100 text-red-600 hover:bg-red-200 rounded-lg transition-colors"
+                                                        className="flex-1 md:flex-none p-2.5 bg-red-100 text-red-600 hover:bg-red-200 rounded-lg transition-colors flex items-center justify-center gap-2"
                                                         title="Cancelar cita"
                                                     >
                                                         <X className="w-5 h-5" />
+                                                        <span className="md:hidden text-sm font-medium">Cancelar</span>
                                                     </button>
                                                 </div>
                                             )}
